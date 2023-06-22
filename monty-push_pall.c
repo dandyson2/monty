@@ -3,69 +3,69 @@
 /**
 * push_stack - Function that pushes an element to
 * the stack
-* @_pointer_: Ptr to the stack
-* @offset: The line count
+* @head: Ptr to the stack
+* @counter: The line count
 * Return: Null
 */
 
-void push_stack(stack_t **_pointer_, unsigned int offset)
+void push_stack(stack_t **head, unsigned int counter)
 {
-int y;
-int z = 0;
-int _index = 0;
+int i, m = 0, flag = 0;
 
-if (!carrier.arg)
+if (bus.arg)
 {
-fprintf(stderr, "L%d: usage: push integer\n", offset);
-fclose(carrier.hhost);
-free(hhost.hosting);
-free_stack(*_pointer_);
+if (bus.arg[0] == '-')
+m++;
+while (bus.arg[m] != '\0')
+{
+if (bus.arg[m] > 57 || bus.arg[m] < 48)
+flag = 1;
+m++;
+}
+if (flag == 1)
+{
+fprintf(stderr, "L%d: usage: push integer\n", counter);
+fclose(bus.file);
+free(bus.content);
+free_stack(*head);
 exit(EXIT_FAILURE);
 }
-
-if (carrier.arg[0] == '-')
-z++;
-
-while (carrier.arg[z] != '\0')
-{
-if (carrier.arg[z] > '9' || carrier.arg[z] < '0')
-{
-_index = 1;
-break;
 }
-
-z++;
-
-}
-if (_index == 1)
-{
-fprintf(stderr, "L%d: usage: push integer\n", offset);
-fclose(carrier.hhost);
-free(carrier.hosting);
-free_stack(*_pointer_);
-exit(EXIT_FAILURE);
-}
-y = atoi(carrier.arg);
-if (carrier.fflags == 0)
-addnode(_pointer_, y);
 else
-addqueue(_pointer_, y);
+{
+fprintf(stderr, "L%d: usage: push integer\n", counter);
+fclose(bus.file);
+free(bus.content);
+free_stack(*head);
+exit(EXIT_FAILURE);
+}
+
+i = atoi(bus.arg);
+if (bus.lifi == 0)
+addnode(head, i);
+else
+addqueue(head, i);
 }
 
 /**
 * pall_stack - Function that prints all the value
 * on the stack, from the top of stack
-* @_pointer_: Ptr to the stack
-* @offset: Line count
+* @head: Ptr to the stack
+* @counter: Line count
 * Return: Null
 */
 
-void pall_stack(stack_t **_pointer_, unsigned int offset)
-{
-stack_t *x;
-(void)offset;
+#include "monty.h"
 
-x = *_pointer_;
+void pall_stack(stack_t **head, unsigned int counter)
+{
+stack_t *h;
+(void)counter;
+
+h = *head;
+if (h == NULL)
+return;
+
 for (; h != NULL; h = h->next)
 {
 printf("%d\n", h->n);

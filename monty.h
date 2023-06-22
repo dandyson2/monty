@@ -42,27 +42,27 @@ typedef struct instruction_s
 } instruction_t;
 
 /**
-* struct carrier_s - File, arguments, contents of
+* struct bus_s - File, arguments, contents of
 * line
 * @arg:The value
-* @hhost: Ptr to the monty file
-* @hosting: The contents line
-* @fflags: Flag change queue __ stack
+* @file: Ptr to the monty file
+* @content: The contents line
+* @lifi: Flag change queue __ stack
 *
 * Description: Contents of variables that can be
 * accesses by other files in the program
 */
-typedef struct carrier_s
+typedef struct bus_s
 {
-	int fflags;
-	char *hosting;
-	FILE *hhost;
+	int lifi;
+	char *content;
+	FILE *file;
 	char *arg;
-}  carrier_t;
+}  bus_t;
 
-carrier_t carrier;
+bus_t bus;
 
-void push_stack(stack_t **_pointer_, unsigned int offset);
-void pall_stack(stack_t **_pointer_, unsigned int offset);
+void push_stack(stack_t **head, unsigned int counter);
+void pall_stack(stack_t **head, unsigned int counter);
 
-#endif
+#endif /* MONTY_H */

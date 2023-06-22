@@ -40,7 +40,7 @@ int main(int ac, char *av[])
 
 		if (read_line > 0)
 		{
-			execute(hosting, &stack, offset, hhost);
+			execle(hosting, &stack_t, offset, hhost);
 		}
 
 		free(hosting);
@@ -51,5 +51,4 @@ int main(int ac, char *av[])
 	fclose(hhost);
 
 	return (0);
-	carrier_t carrier = {NULL, NULL, NULL, 0};
 }
